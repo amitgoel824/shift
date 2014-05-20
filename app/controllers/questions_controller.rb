@@ -66,12 +66,12 @@ class QuestionsController < ApplicationController
   private
 
   #Checking if the current user is an admin
-    def check_admin
-      @user = current_user
-      if @user.admin == false
-        redirect_to users_profile_path, flash: {alert: "You don't have the permissions to visit the page you are trying to"}
-      end
+  def check_admin
+    @user = current_user
+    if @user.id != 1
+      redirect_to users_profile_path, flash: {alert: "You don't have the permissions to visit the page you are trying to"}
     end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])
@@ -81,4 +81,4 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:statement, :option1, :option2, :option3, :option4, :answer, :stars, :category_id)
     end
-end
+  end

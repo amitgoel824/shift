@@ -65,12 +65,12 @@ class ScoresController < ApplicationController
   private
 
   #Checking if the current user is an admin
-    def check_admin
-      @user = current_user
-      if @user.admin == false
-        redirect_to users_profile_path, flash: {alert: "You don't have the permissions to visit the page you are trying to"}
-      end
+  def check_admin
+    @user = current_user
+    if @user.id != 1 
+      redirect_to users_profile_path, flash: {alert: "You don't have the permissions to visit the page you are trying to"}
     end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_score
       @score = Score.find(params[:id])
@@ -80,4 +80,4 @@ class ScoresController < ApplicationController
     def score_params
       params.require(:score).permit(:user_id, :category_id, :score)
     end
-end
+  end

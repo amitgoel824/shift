@@ -67,7 +67,7 @@ class CategoriesController < ApplicationController
     #Checking if the current user is an admin
     def check_admin
       @user = current_user
-      if @user.admin == false
+      if @user.id !=1 
         redirect_to users_profile_path, flash: {alert: "You don't have the permissions to visit the page you are trying to" }
       end
     end
@@ -80,4 +80,4 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name)
     end
-end
+  end
