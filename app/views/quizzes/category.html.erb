@@ -1,0 +1,15 @@
+<h2>Choose a Category</h2>
+
+<div class="row">
+	<% @categories.each do |category| %>
+	<div class="col-md-4"><%= image_tag(category.image_url) %>
+		<h2>
+			<form   action="/quizzes/questions" method="POST">
+				<button class = "btn btn-primary" type="submit" name="category" value="<%= category.id %>"><%=category.name%></button>
+			</form>
+		</h2>
+	</div>
+	<% end %>
+	
+</div>
+
